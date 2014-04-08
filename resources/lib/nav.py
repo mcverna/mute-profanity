@@ -126,11 +126,12 @@ def get_blocked_words():
     return [word for word, severity in tuples]
 
 
-def createEDL(srtLoc):
+def createEDL(srtLoc, fileLoc):
     try:
+
         safety = Addon.getSetting("safety")
         safety = float(safety) / 1000
-        edl = EDLManager(srtLoc, get_blocked_words(), safety)
+        edl = EDLManager(srtLoc, fileLoc, get_blocked_words(), safety)
         if Addon.getSetting("editsrt") == "true":
             # Tell the edl manager to replace blocked works on SRT file too
             edl.modify_srt = True
@@ -166,7 +167,7 @@ def handle(params):
         srtLoc = finder.getSRT(fileLoc)
         if srtLoc:
             xbmc.log("Using srt file: %s" % srtLoc)
-            if createEDL(srtLoc):
+            if createEDL(srtLoc, fileLoc):
                 dialog.ok(details['label'], Addon.getLocalizedString(30303))
             else:
                 dialog.ok(details['label'], Addon.getLocalizedString(30307))
@@ -185,7 +186,7 @@ def handle(params):
         srtLoc = finder.getSRT(fileLoc)
         if srtLoc:
             xbmc.log("Using srt file: %s" % srtLoc)
-            if createEDL(srtLoc):
+            if createEDL(srtLoc, fileLoc):
                 dialog.ok(details['showtitle'], Addon.getLocalizedString(30309))
             else:
                 dialog.ok(details['showtitle'], Addon.getLocalizedString(30307))

@@ -13,14 +13,15 @@ MUTE_PROFANITY_MARKER_START = "###### This section is automatically maintained b
 MUTE_PROFANITY_MARKER_END = "###### END Mute Profanity plugin section ######"
 
 class EDLManager(object):
-    def __init__(self, srtLoc, blocked_words, safety=.35):
+    def __init__(self, srtLoc, fileLoc, blocked_words, safety=.35):
         """
         Constructor
         """
         self.srtLoc = srtLoc
+        self.fileLoc = fileLoc
         self.blocked_words = blocked_words
         self.safety = safety
-        self.edlLoc = srtLoc[:-3] + "edl"
+        self.edlLoc = fileLoc[:-3] + "edl"
         self.modify_srt = False
         
     def setEDLName(self, name):

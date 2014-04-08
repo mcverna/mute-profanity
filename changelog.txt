@@ -1,1 +1,11 @@
-nothing yet
+4/8/2014
+*Fixed a show stopper bug where that occurred when running the program on an
+existing .srt(subtitle) file that does not exactly match the media files
+name resulting in the playing of inappropriate audio.  This bug occurs for any
+subtitle downloaded from opensubtitles.org.  E.g. MovieName.mkv has a subtitle
+file MovieName.en.srt.  The app was inappropriately creating the edl filename
+based upon the srt file rather than the movie file name.  XBMC only loads .edl
+files when they match the movie files format. Running the app on MovieName.mkv
+with a subtitle file named MovieName.en.srt now appropriately creates
+MovieName.edl and audio is muted correctly.
+
