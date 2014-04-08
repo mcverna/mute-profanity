@@ -13,16 +13,16 @@ import filter
 
 def main():
     args = sys.argv
-    if len(args) < 3:
-        print "Usage: srtFile filterFile"
+    if len(args) < 4:
+        print "Usage: movieFile srtFile filterFile"
         sys.exit()
 
-    categories = filter.parse_file(args[2])
+    categories = filter.parse_file(args[3])
     profanity = filter.get_all_words(categories)
-    worker = EDLManager(args[1], profanity);
+    worker = EDLManager(args[2], args[1], profanity);
     
-    if len(args) == 4:
-        worker.setEDLName(args[3])
+    if len(args) == 5:
+        worker.setEDLName(args[4])
         
     worker.updateEDL()
     
